@@ -36,10 +36,10 @@ INSERT INTO Reviewer (emailAdd, firstName, lastName, phoneNum, affiliation) VALU
 
 
 INSERT INTO Review (reviewId, paperId, techMeritScore, readabilityScore, originalityScore, relevanceScore, reviewerEmailAdd, recommendation, authorComment, commiteeComment) VALUES
-(1, 1, 8, 8, 8, 8, 'sarah.olson@gmail.com', NULL, NULL, NULL),
-(2, 1, 8, 8, 8, 8, 'david.cho@gmail.com', NULL, NULL, NULL),
-(3, 2, 8, 8, 8, 8, 'sarah.olson@gmail.com', NULL, NULL, NULL),
-(4, 2, 8, 8, 8, 8, 'iris.hall@gmail.com', NULL, NULL, NULL),
+(1, 1, 8, 8, 8, 8, 'sarah.olson@gmail.com', 'I recommend', NULL, NULL),
+(2, 1, 8, 8, 8, 8, 'david.cho@gmail.com', 'I recommend', NULL, NULL),
+(3, 2, 8, 8, 8, 8, 'sarah.olson@gmail.com', 'I recommend', NULL, NULL),
+(4, 2, 8, 8, 8, 8, 'iris.hall@gmail.com', 'I recommend', NULL, NULL),
 (5, 2, 8, 8, 8, 8, 'morgan.cooper@gmail.com', NULL, NULL, NULL),
 (6, 5, 8, 8, 8, 8, 'david.cho@gmail.com', NULL, NULL, NULL),
 (7, 5, 8, 8, 8, 8, 'sarah.olson@gmail.com', NULL, NULL, NULL),
