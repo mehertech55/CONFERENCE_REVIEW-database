@@ -138,7 +138,7 @@ public class Driver {
 	
 	}
 
-	public void newSubmission() {
+public void newSubmission() {
 		/*● Create a new paper submission. Remember this includes creating new records in both
 the Author and Paper tables.*/
 		try {
@@ -193,8 +193,41 @@ the Author and Paper tables.*/
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		
 	
 	}	
+
+public void DeleteRow() {
+	/*● Create a new paper submission. Remember this includes creating new records in both
+the Author and Paper tables.*/
+	try {
+		Connection myConn = DriverManager.getConnection(DB_URL_1,USERNAME, PASSWORD);
+		Statement  myStmt = myConn.createStatement();
+		System.out.println("-----------------------------------------");
+		System.out.println("QUERY 5:\nDelete row from Author");
+		System.out.println("-----------------------------------------");
+		myStmt = myConn.createStatement();
+	    String sql = "delete from author where emailAdd='lucy.williams@gmail.com'";
+
+	    
+	    myStmt.executeUpdate(sql);
+	      System.out.println("Record deleted successfully");
+	    } 
+		catch (SQLIntegrityConstraintViolationException e) {
+	    	 System.out.println("Error message : SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`conference_review`.`paper`, CONSTRAINT `paper_ibfk_1` FOREIGN KEY (`contactEmailAdd`) REFERENCES `author` (`emailAdd`) ");
+		}
+	    
+		catch (SQLException e) {
+	    	
+	      e.printStackTrace();
+	
+	}
+
+}
+		
+		
+	
 	
 	
 	
@@ -213,6 +246,7 @@ the Author and Paper tables.*/
 		demo.getReviews();
 		demo.getCount();
 		demo.newSubmission();
+		demo.DeleteRow();
 
 		
 	}
