@@ -1,5 +1,4 @@
 
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,7 +29,7 @@ public class Driver {
 			Connection myConn = DriverManager.getConnection(DB_URL_1,USERNAME, PASSWORD);
 			Statement  myStmt = myConn.createStatement();
 			System.out.println("-----------------------------------------");
-			System.out.println("QUERY 1:\n Submitted paper’s details by the author’s Primary Key.");
+			System.out.println("QUERY 1:\nSubmitted paper’s details by the author’s Primary Key.");
 			System.out.println("-----------------------------------------");
 			myStmt = myConn.createStatement();
 
@@ -75,7 +74,7 @@ public class Driver {
 			Connection myConn = DriverManager.getConnection(DB_URL_1,USERNAME, PASSWORD);
 			Statement  myStmt = myConn.createStatement();
 			System.out.println("-----------------------------------------");
-			System.out.println("QUERY 2:\n Result of all reviews of papers which are recommended to be published.");
+			System.out.println("QUERY 2:\nResult of all reviews of papers which are recommended to be published.");
 			System.out.println("-----------------------------------------");
 			myStmt = myConn.createStatement();
 			String query =  "SELECT reviewId, paper.paperId, techMeritScore, readabilityScore, originalityScore, relevanceScore, reviewerEmailAdd, recommendation, authorComment, commiteeComment FROM review \n" + 
@@ -115,7 +114,7 @@ public class Driver {
 			Connection myConn = DriverManager.getConnection(DB_URL_1,USERNAME, PASSWORD);
 			Statement  myStmt = myConn.createStatement();
 			System.out.println("-----------------------------------------");
-			System.out.println("QUERY 3:\\nCount of total papers that are submitted.");
+			System.out.println("QUERY 3:\nCount of total papers that are submitted.");
 			System.out.println("-----------------------------------------");
 			myStmt = myConn.createStatement();
 			String query =  "SELECT COUNT(*) AS TOTAL FROM paper;";					
@@ -139,6 +138,72 @@ public class Driver {
 	
 	}
 
+	public void newSubmission() {
+		/*● Create a new paper submission. Remember this includes creating new records in both
+the Author and Paper tables.*/
+		try {
+			Connection myConn = DriverManager.getConnection(DB_URL_1,USERNAME, PASSWORD);
+			Statement  myStmt = myConn.createStatement();
+			System.out.println("-----------------------------------------");
+			System.out.println("QUERY 4:\nNew paper submission");
+			System.out.println("-----------------------------------------");
+			myStmt = myConn.createStatement();
+		
+		    String query = " INSERT INTO Author (emailAdd, firstName, lastName)"
+		    	        + " values (?, ?, ?)";
+
+		    // create the mysql insert preparedstatement
+		    PreparedStatement preparedStmt = myConn.prepareStatement(query);
+		    preparedStmt.setString (1, "mary.tiger@gmail.com");
+		    preparedStmt.setString (2, "Mary");
+		    preparedStmt.setString   (3, "Tiger");
+
+		   // execute the preparedstatement
+		    preparedStmt.execute();
+		    
+		    String Paperquery = " INSERT INTO Paper (paperId, title, abstract, fileName, contactEmailAdd)"
+	    	        + " values (?, ?, ?, ?, ?)";
+    		//"(6, 'Title6', NULL, NULL,'mary.tiger@gmail.com');\n" + 
+
+
+		    // create the mysql insert preparedstatement
+		    preparedStmt = myConn.prepareStatement(Paperquery);
+		    preparedStmt.setInt (1, 6);
+		    preparedStmt.setString (2, "Title6");
+		    preparedStmt.setString   (3, "NULL");
+		    preparedStmt.setString   (4, "NULL");
+		    preparedStmt.setString   (5, "mary.tiger@gmail.com");
+		    
+		    
+
+
+		    // execute the preparedstatement
+		    preparedStmt.execute();
+		    
+
+		  //  Close 
+		    myConn.close();
+
+		    
+			
+		}	
+			
+			
+		 catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	public static void main(String[] args) {
 		
@@ -147,6 +212,8 @@ public class Driver {
 		demo.getSubmittedPaperDetails();
 		demo.getReviews();
 		demo.getCount();
+		demo.newSubmission();
+
 		
 	}
 
